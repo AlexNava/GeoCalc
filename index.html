@@ -17,13 +17,25 @@
 		</script>
 	</head>
 	<body>
+        <div id="Message">USR-MSG</div>
 		<div id="map-canvas"></div>
-		<form id="NewPointForm">
-			Name: <input type="text" id="PointName" placeholder="Any name"/><br />
-			Coordinates: <input type="text" id="PointCoord" placeholder="N/E coordinates"/><br />
-			Accuracy: <input type="text" id="PointAccuracy" placeholder="meters"/><br />
-			<input type="submit" value="Submit" />
-		</form>
+        <div id="AddPoints">
+            <button id="AddCurrent"></button>
+            OR
+            <button id="AddContinuous"></button>
+            OR
+            <form id="AddManual">
+                Name: <input type="text" id="PointName" placeholder="Any name"/><br />
+                Coordinates: <input type="text" id="PointCoord" placeholder="N/E coordinates"/><br />
+                Accuracy: <input type="text" id="PointAccuracy" placeholder="meters"/><br />
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+        <div id="ViewPoints">
+            Pt1
+            Pt2
+            ...
+        </div>
 		<script src = "scripts/GeoCalc.js"></script>		
 	</body>
 </html>

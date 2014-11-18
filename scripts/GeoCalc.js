@@ -10,4 +10,10 @@ var addPoint = function(e){
 	e.preventDefault();
 }
 
-document.getElementById('NewPointForm').onsubmit = addPoint;
+var manageContinuous = function(){
+	
+}
+
+document.getElementById('AddCurrent').onsubmit = addPoint;
+document.getElementById('AddContinuous').onsubmit = manageContinuous;
+document.getElementById('AddManual').onsubmit = addPoint;
