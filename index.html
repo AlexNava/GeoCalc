@@ -20,15 +20,16 @@
         <div id="Message">USR-MSG</div>
 		<div id="map-canvas"></div>
         <div id="AddPoints">
-            <button id="AddCurrent"></button>
+            <button id="AddCurrent">Acquire device position</button>
             OR
-            <button id="AddContinuous"></button>
+            <button id="AddContinuous">Acquire device track</button>
             OR
             <form id="AddManual">
                 Name: <input type="text" id="PointName" placeholder="Any name"/><br />
-                Coordinates: <input type="text" id="PointCoord" placeholder="N/E coordinates"/><br />
+                Latitude: <input type="text" id="PointLat" placeholder="N coordinates"/><br />
+                Longitude: <input type="text" id="PointLon" placeholder="E coordinates"/><br />
                 Accuracy: <input type="text" id="PointAccuracy" placeholder="meters"/><br />
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Add manual position" />
             </form>
         </div>
         <div id="ViewPoints">
