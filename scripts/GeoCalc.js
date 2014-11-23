@@ -10,7 +10,7 @@ var init = function() {
 		center: { lat: 45.5, lng: 9.2}
 	};
 
-	this.map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	this.gugolMap = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
 	this.myPosCircle = undefined;
 };
@@ -27,7 +27,7 @@ var posUpdate = function(position) {
 		strokeWeight: 2,
 		fillColor: '#0000ff',
 		fillOpacity: 0.3,
-		map: this.map,
+		map: gugolMap,
 		center: new google.maps.LatLng(currentPoint.y, currentPoint.x),
 		radius: currentPoint.radius
 	};
@@ -61,7 +61,7 @@ var centerZoomMap = function(){
 		bounds.union(pointsList[i].circle.getBounds());
 	}
 	
-	map.fitBounds(bounds);
+	gugolMap.fitBounds(bounds);
 }
 
 var calcAverage1 = function(){
@@ -89,7 +89,7 @@ var addPoint = function(e){
 				strokeWeight: 2,
 				fillColor: '#FF0000',
 				fillOpacity: 0.3,
-				map: this.map,
+				map: gugolMap,
 				center: new google.maps.LatLng(currentPoint.y, currentPoint.x),
 				radius: currentPoint.radius
 			};
