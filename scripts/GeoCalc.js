@@ -53,9 +53,15 @@ var getLatitude = function(latString){
 }
 
 var centerZoomMap = function(){
-	var pos = new google.maps.LatLng(currentPoint.y, currentPoint.x);
-
-	map.setCenter(pos);
+	var bounds = new google.maps.LatLngBounds()
+	
+	bounds.union(myPosCircle.getBounds());
+	
+	for (var i = 0; i < this.pointsList.length; i++) {
+		bounds.union(pointsList[i].circle.getBounds());
+	}
+	
+	map.fitBounds(bounds);
 }
 
 var calcAverage1 = function(){
@@ -74,14 +80,28 @@ var addPoint = function(e){
 	else {
 		// Add from sensors
 		if (geolocationAvailable) {
-			navigator.geolocation.getCurrentPosition(function(position) {
-				pointToAdd.x = position.coords.longitude;
-				pointToAdd.y = position.coords.latitude;
-				pointToAdd.radius = position.coords.accuracy;
-			});
+			pointToAdd.x = currentPoint.x;
+			pointToAdd.y = currentPoint.y;
+			pointToAdd.radius = currentPoint.radius;
+			var pointToAddOpts = {
+				strokeColor: '#FF0000',
+				strokeOpacity: 0.6,
+				strokeWeight: 2,
+				fillColor: '#FF0000',
+				fillOpacity: 0.3,
+				map: this.map,
+				center: new google.maps.LatLng(currentPoint.y, currentPoint.x),
+				radius: currentPoint.radius
+			};
+			var pointToAddCircle = new google.maps.Circle(pointToAddOpts);
+			pointToAdd.circleOpts = pointToAddOpts;
+			pointToAdd.circle = pointToAddCircle;
 			
+			pointsList.push(pointToAdd);
 		}
 	}
+	
+	centerZoomMap();
 }
 
 var manageContinuous = function(){
