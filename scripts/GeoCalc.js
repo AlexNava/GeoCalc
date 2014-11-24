@@ -2,7 +2,7 @@ var init = function() {
 	this.geolocationAvailable = ('geolocation' in navigator); // TODO: popup error
 	this.pointsList = Array(0);
 	this.pointCounter = 0; // For naming purpose, != from pointList.length
-	this.geoWatchID = navigator.geolocation.watchPosition(posUpdate);
+	this.geoWatchID = navigator.geolocation.watchPosition(posUpdate, null, {enableHighAccuracy:true});
 	this.currentPoint = {};
 	
 	var mapOptions = {
