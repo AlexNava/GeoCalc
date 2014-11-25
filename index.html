@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<style type="text/css">
-		html, body, #map-canvas {width: 1000px; height: 800px; margin: 0; padding: 0;}
-		</style>
+		<link rel="stylesheet" href="css/gcMain.css"/>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_GxD59aQPgx2dcAmHi6npVZZ-eMenZAA"></script>
 		<!--<script>
 			function initialize() {
@@ -24,12 +22,12 @@
             OR
             <button id="AddContinuous">Acquire device track</button>
             OR
-            <form id="AddManual">
+            <form id="AddManualForm">
                 <!--Name: <input type="text" id="PointName" placeholder="Any name"/><br />-->
+                <input type="submit" id="AddManual" value="Add manual position" />
                 Latitude: <input type="text" id="PointLat" placeholder="N coordinates"/><br />
                 Longitude: <input type="text" id="PointLon" placeholder="E coordinates"/><br />
                 Accuracy: <input type="text" id="PointAccuracy" placeholder="meters"/><br />
-                <input type="submit" value="Add manual position" />
             </form>
         </div>
         <div id="ViewPoints">
