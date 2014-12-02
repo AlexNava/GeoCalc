@@ -15,7 +15,12 @@
 		</script>-->
 	</head>
 	<body>
-        <div id="Message">USR-MSG</div>
+        <div id="Output">
+			<output type="text" id="Message">USR-MSG</output>
+		</div>
+		<div id="Options">
+			<input type="checkbox" id="KeepCenter">Keep map centered</button>
+		</div>
 		<div id="map-canvas"></div>
         <div id="AddPoints">
             <button id="AddCurrent">Acquire device position</button>
@@ -35,6 +40,7 @@
             Pt2
             ...
         </div>
-		<script src = "scripts/GeoCalc.js"></script>		
+		<script src = "scripts/GeoCalcModel.js"></script>		
+		<script src = "scripts/GeoCalcView.js"></script>		
 	</body>
 </html>

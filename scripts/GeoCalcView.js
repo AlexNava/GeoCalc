@@ -4,6 +4,7 @@ var init = function() {
 	this.tracesCounter = 0; // For naming purpose, != from pointList.length
 	this.geoWatchID = navigator.geolocation.watchPosition(posUpdate, null, {enableHighAccuracy:true});
 	this.currentPoint = {};
+	this.keepMapCentered = false;
 	this.trackRecording = false;
 	this.tempTrack = {
 		points: new Array(0)
@@ -76,7 +77,9 @@ var posUpdate = function(position) {
 		}
 	}
 	
-	centerZoomMap();
+	if (keepMapCentered === true) {
+		centerZoomMap();
+	}
 }
 
 var getLongitude = function(lonString) {
@@ -105,7 +108,34 @@ var centerZoomMap = function() {
 }
 
 var calcAverage1 = function() {
+	// TODO: add checkbox to select points
+	var x =         0;
+	var y =         0;
+	var totWeight = 0;
+	for (var i = 0; i < this.tracesList.length; i++) {
+		if (tracesList[i].type === 'point') {
+			var currentWeight;
+			if (tracesList[i].radius > 0) {
+				currentWeight = 1 / (tracesList[i].radius * tracesList[i].radius);
+			}
+			else {
+				currentWeight = 1;
+			}
+			x += tracesList[i].x * currentWeight;
+			y += tracesList[i].y * currentWeight;
+			totWeight += currentWeight;
+		}
+		else if (tracesList[i].type === 'track') {
+			// other stuff
+		}
+	}
 	
+	if (totWeight > 0) {
+		x /= totWeight;
+		y /= totWeight;
+	}
+	
+	return [x, y, totWeight];
 }
 
 var newPoint = function() {
@@ -114,6 +144,14 @@ var newPoint = function() {
 	};
 
 	return point;
+}
+
+var manageCenter = function(e) {
+	keepMapCentered = e.currentTarget.checked;
+
+	if (keepMapCentered === true) {
+		centerZoomMap();
+	}
 }
 
 var addPoint = function(e) {
@@ -148,7 +186,12 @@ var addPoint = function(e) {
 		tracesList.push(pointToAdd);
 	}
 	
-	centerZoomMap();
+	if (keepMapCentered === true) {
+		centerZoomMap();
+	}
+	
+	var guessPoint = calcAverage1();
+	document.getElementById('Message').value = "Lat: " + guessPoint[0] + " Lon: " + guessPoint[1] + " Weight: " + guessPoint[2];
 }
 
 var manageContinuous = function() {
@@ -190,6 +233,7 @@ var manageContinuous = function() {
 
 }
 
+document.getElementById('KeepCenter').onclick = manageCenter;
 document.getElementById('AddCurrent').onclick = addPoint;
 document.getElementById('AddContinuous').onclick = manageContinuous;
 document.getElementById('AddManualForm').onsubmit = addPoint;
