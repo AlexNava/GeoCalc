@@ -8,7 +8,7 @@ html, body {
 	height: 400px;
 }
 
-@media (max-width: 500px) {
+@media (max-device-width: 500px) {
 	#map-canvas {
 		width: 100%;
 		height: 400px;
