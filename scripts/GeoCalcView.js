@@ -191,7 +191,7 @@ var addPoint = function(e) {
 	}
 	
 	var guessPoint = calcAverage1();
-	document.getElementById('Message').value = "Lat: " + guessPoint[0] + " Lon: " + guessPoint[1] + " Weight: " + guessPoint[2];
+	document.getElementById('Message').value = "Lat: " + guessPoint[1] + " Lon: " + guessPoint[0] + " Weight: " + guessPoint[2];
 }
 
 var manageContinuous = function() {
